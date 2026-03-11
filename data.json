@@ -1,0 +1,86 @@
+[
+    {
+        "id": "flagship-sofa",
+        "name": "Aura Modular Sofa",
+        "category": "Sofas",
+        "price": 2400,
+        "description": "Our signature piece. Crafted with premium Italian leather and solid oak frame. Modular design allows for infinite configurations.",
+        "availability": "In Stock",
+        "modelUrl": "https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/GlamVelvetSofa/glTF-Binary/GlamVelvetSofa.glb",
+        "tags": [
+            "Premium",
+            "Modular",
+            "Leather"
+        ],
+        "specs": {
+            "width": 240,
+            "height": 85,
+            "depth": 100,
+            "weight": 65,
+            "material": "Italian Leather"
+        }
+    },
+    {
+        "id": "lumina-lounge-sofa",
+        "name": "Lumina Lounge Sofa",
+        "category": "Sofas",
+        "price": 2800,
+        "description": "A sophisticated wood and leather lounge sofa. Combines timeless mid-century aesthetics with modern ergonomic support.",
+        "availability": "Limited Edition",
+        "modelUrl": "https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/SheenWoodLeatherSofa/glTF-Binary/SheenWoodLeatherSofa.glb",
+        "tags": [
+            "Handcrafted",
+            "Leather",
+            "Mid-Century"
+        ],
+        "specs": {
+            "width": 210,
+            "height": 78,
+            "depth": 95,
+            "weight": 55,
+            "material": "Hand-stitched Leather"
+        }
+    },
+    {
+        "id": "cloud-designer-chair",
+        "name": "Cloud Designer Chair",
+        "category": "Chairs",
+        "price": 1400,
+        "description": "Unparalleled comfort for the ultimate rest. A sculptural piece that harmonizes with any contemporary interior.",
+        "availability": "In Stock",
+        "modelUrl": "https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/SheenChair/glTF-Binary/SheenChair.glb",
+        "tags": [
+            "Comfort",
+            "Sculptural",
+            "Luxury"
+        ],
+        "specs": {
+            "width": 80,
+            "height": 110,
+            "depth": 85,
+            "weight": 25,
+            "material": "Velvet & Steel"
+        }
+    },
+    {
+        "id": "zen-designer-lamp",
+        "name": "Zen Designer Lamp",
+        "category": "Decorative",
+        "price": 120,
+        "description": "Artisan stained glass lighting with a vintage soul. The perfect ambient accent for your refined living space.",
+        "availability": "In Stock",
+        "modelUrl": "https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/Lantern/glTF-Binary/Lantern.glb",
+        "tags": [
+            "Artisan",
+            "Atmosphere",
+            "Glass"
+        ],
+        "specs": {
+            "width": 40,
+            "height": 60,
+            "depth": 40,
+            "weight": 5,
+            "material": "Stained Glass"
+        }
+    }
+]
