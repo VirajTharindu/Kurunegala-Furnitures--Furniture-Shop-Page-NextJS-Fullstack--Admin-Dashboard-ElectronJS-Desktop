@@ -127,6 +127,8 @@ During development of Kurunegala Furnitures the focus areas included:
 - **Windows MAX_PATH Limits:** Learning how modern bundlers interact with OS-level path restrictions, resulting in a fallback Webpack strategy for deep bundle structures.
 - **Mastering the Hybrid Monolith:** Orchestrating a single codebase for both web and desktop (Electron) contexts.
 
+If you need any further information or clarifications, go to the [Engineering Lessons](docs/engineering_lessons.md).
+
 ---
 
 # 🔧 Key Design Decisions
@@ -145,6 +147,8 @@ During development of Kurunegala Furnitures the focus areas included:
 
 5. **Modular, Layered Folder Architecture**
    Strict separation of Presentation, State, Logic, and Data.
+
+If you need any further information or clarifications, go to the [Design Decisions](docs/design_decisions.md).
 
 ---
 
