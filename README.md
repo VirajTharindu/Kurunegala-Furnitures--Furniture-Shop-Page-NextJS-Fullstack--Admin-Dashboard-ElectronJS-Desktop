@@ -28,8 +28,7 @@ The system focuses on **real-time 3D rendering and high-performance WebGL integr
 | 🖼️ **Room Visualizer** | Place furniture in various room environments and presets with high-performance shaders |
 | 📊 **Desktop Admin Terminal** | Dedicated ElectronJS desktop application for secure, real-time inventory and sales management |
 | ⚡ **Fluid Animations** | High-fidelity scrolling and interactive states powered by `framer-motion` and `gsap` |
-| 📡 **Fullstack Next.js API** | Integrated server-side API routes handling catalog logic and state persistency |
-| 🎨 **Executive Dashboard** | D3-powered analytics, recent sales activity, and live 3D asset previews for administrators |
+| 🎨 **Admin Executive Dashboard** | D3-powered analytics, recent sales activity, and live 3D asset previews for administrators |
 
 ---
 
@@ -126,6 +125,7 @@ During development of Kurunegala Furnitures the focus areas included:
 - **Custom Shaders in React:** Implementing custom BackgroundShaders via native Three.js ShaderMaterials mounted via React components for premium atmospheric aesthetics.
 - **Complex UI/UX Synchrony:** Ensuring Zustand state perfectly matches `framer-motion` layout animations and WebGL material updates simultaneously.
 - **Windows MAX_PATH Limits:** Learning how modern bundlers interact with OS-level path restrictions, resulting in a fallback Webpack strategy for deep bundle structures.
+- **Mastering the Hybrid Monolith:** Orchestrating a single codebase for both web and desktop (Electron) contexts.
 
 ---
 
@@ -142,6 +142,9 @@ During development of Kurunegala Furnitures the focus areas included:
 
 4. **JSON File System as Initial DB**
    Opted to construct a robust abstraction layer `lib/db.ts` utilizing `data.json` so the entire frontend could be verified immediately. (MSSQL integration planned on the Roadmap).
+
+5. **Modular, Layered Folder Architecture**
+   Strict separation of Presentation, State, Logic, and Data.
 
 ---
 
@@ -175,6 +178,8 @@ Additional documentation is available in the `docs/` folder:
 |---|---|
 | ["Architecture & Design"](docs/architecture.md) | Granular breakdown of the system components and data flow. |
 | ["Feature Specifications"](docs/features.md) | Details on WebGL tools, configurators, and admin terminal functionalities. |
+| ["Engineering Lessons"](docs/engineering_lessons.md) | Detailed technical challenges and performance optimization strategies. |
+| ["Design Decisions"](docs/design_decisions.md) | In-depth rationale for architectural and technical choices. |
 
 ---
 
