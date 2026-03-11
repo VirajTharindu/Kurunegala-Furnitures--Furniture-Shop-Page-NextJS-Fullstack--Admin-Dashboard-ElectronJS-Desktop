@@ -28,8 +28,7 @@ The system focuses on **real-time 3D rendering and high-performance WebGL integr
 | 🖼️ **Room Visualizer** | Place furniture in various room environments and presets with high-performance shaders |
 | 📊 **Desktop Admin Terminal** | Dedicated ElectronJS desktop application for secure, real-time inventory and sales management |
 | ⚡ **Fluid Animations** | High-fidelity scrolling and interactive states powered by `framer-motion` and `gsap` |
-| 📡 **Fullstack Next.js API** | Integrated server-side API routes handling catalog logic and state persistency |
-| 🎨 **Executive Dashboard** | D3-powered analytics, recent sales activity, and live 3D asset previews for administrators |
+| 🎨 **Admin Executive Dashboard** | D3-powered analytics, recent sales activity, and live 3D asset previews for administrators |
 
 ---
 
@@ -119,29 +118,26 @@ The system follows a **Modular, Component-Based layered pattern**:
 
 # 🧠 Engineering Lessons
 
-During development of Kurunegala Furnitures the focus areas included:
+- **Mastering the Hybrid Monolith:** Orchestrating a single codebase for both web and desktop (Electron) contexts.
+- **WebGL Optimization & Performance:** Optimizing 3D models with `useMemo` and concurrent rendering to maintain high FPS.
+- **Unified Codebase (Web & Desktop):** Sharing core business logic and state between public and admin environments.
+- **Custom Shaders & Visual Fidelity:** Implementing high-performance atmospheric visuals via raw Three.js shaders.
+- **Complex UI/UX Synchrony:** Coordinating `Zustand`, `Framer Motion`, and WebGL for a seamless interactive feel.
+- **Windows MAX_PATH Limits & Bundling:** Addressing Windows-specific path limits to ensure reliable deployment.
 
-- **WebGL Optimization Context:** Managing complex GLTF/GLB models dynamically inside React components without tanking FPS. Heavily utilized `useMemo` for materials and scene objects.
-- **Unified Codebase (Web & Desktop):** Architecting the app so standard web consumers and Electron desktop admins share the same Next.js core, decoupled by route segments.
-- **Custom Shaders in React:** Implementing custom BackgroundShaders via native Three.js ShaderMaterials mounted via React components for premium atmospheric aesthetics.
-- **Complex UI/UX Synchrony:** Ensuring Zustand state perfectly matches `framer-motion` layout animations and WebGL material updates simultaneously.
-- **Windows MAX_PATH Limits:** Learning how modern bundlers interact with OS-level path restrictions, resulting in a fallback Webpack strategy for deep bundle structures.
+*For a detailed breakdown of technical challenges and solutions, see [docs/engineering_lessons.md](docs/engineering_lessons.md).*
 
 ---
 
 # 🔧 Key Design Decisions
 
-1. **Next.js App Router API over External Node Server**
-   Kept the architecture monolithic for the MVP. The Next.js API folders inherently act as a secure proxy to the data layer, reducing infrastructure overhead and latency to zero.
+1. **Next.js App Router vs. External Node Server:** Monolithic core for reduced latency and infrastructure overhead.
+2. **Electron for Admin Terminal:** Dedicated desktop shell for enhanced security and focused admin UX.
+3. **Zustand Over React Context API:** High-performance state management for demanding 3D rendering.
+4. **JSON File System as Initial Data Layer:** Abstracted `lib/db.ts` for immediate portability and future MSSQL migration.
+5. **Modular, Layered Folder Architecture:** Strict separation of Presentation, State, Logic, and Data.
 
-2. **Electron for Admin Terminal**
-   Instead of exposing the global inventory system on the public internet, wrapping the Next.js output in Electron provides a secure, "kiosk-like" desktop terminal for shop owners.
-
-3. **Zustand Over Context API**
-   Given the high frame rate requirements of the 3D canvas, Zustand was chosen to prevent unnecessary re-renders when the `useConfigurator` state updates material values.
-
-4. **JSON File System as Initial DB**
-   Opted to construct a robust abstraction layer `lib/db.ts` utilizing `data.json` so the entire frontend could be verified immediately. (MSSQL integration planned on the Roadmap).
+*For more in-depth rationale, see [docs/design_decisions.md](docs/design_decisions.md).*
 
 ---
 
@@ -175,6 +171,8 @@ Additional documentation is available in the `docs/` folder:
 |---|---|
 | ["Architecture & Design"](docs/architecture.md) | Granular breakdown of the system components and data flow. |
 | ["Feature Specifications"](docs/features.md) | Details on WebGL tools, configurators, and admin terminal functionalities. |
+| ["Engineering Lessons"](docs/engineering_lessons.md) | Detailed technical challenges and performance optimization strategies. |
+| ["Design Decisions"](docs/design_decisions.md) | In-depth rationale for architectural and technical choices. |
 
 ---
 
@@ -184,7 +182,7 @@ This repository is published for **portfolio and educational review purposes**.
 
 The source code may not be accessed, copied, modified, distributed, or used without explicit permission from the author.
 
-© 2024 Viraj Tharindu — All Rights Reserved.
+© 2025 Viraj Tharindu — All Rights Reserved.
 
 ---
 
@@ -198,7 +196,7 @@ I would be happy to discuss the architecture, design decisions, or provide a pri
 
 📧 Email: virajtharindu1997@gmail.com  
 💼 LinkedIn: [viraj-tharindu](https://www.linkedin.com/in/viraj-tharindu/)  
-🌐 Portfolio: [vjstyles](https://vjstyles.com/)  
+🌐 Portfolio: [vjstyles.com](https://vjstyles.com/)  
 🐙 GitHub: [VirajTharindu](https://github.com/VirajTharindu)  
 
 ---
