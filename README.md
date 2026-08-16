@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/License-All%20Rights%20Reserved-E11D48?style=for-the-badge&logo=security&logoColor=white" alt="License" />
 </p>
 
-# 🧩 Kurunegala Furnitures
+# 🧩 Kurunegala Furnitures 
 
 > **Immersive 3D Experience for Modern Furniture******
 
@@ -18,7 +18,7 @@ Kurunegala Furnitures is a **Fullstack Web Application and Desktop Admin Portal*
 
 The system focuses on **real-time 3D rendering and high-performance WebGL integrations** and aims to **provide an unparalleled, true-to-life pre-purchase visualization experience for users**.
 
----
+-----
 
 # ✨ Key Features
 
