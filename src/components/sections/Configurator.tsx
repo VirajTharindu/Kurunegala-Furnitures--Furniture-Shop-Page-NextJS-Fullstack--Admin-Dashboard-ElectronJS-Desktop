@@ -4,8 +4,11 @@ import Scene from "@/components/canvas/Scene";
 import ProductModel from "@/components/models/ProductModel";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { Product } from "@/lib/db";
+import { useSession } from "next-auth/react";
+import { ShoppingCart } from "lucide-react";
+import { FrontendProduct } from "@/types/product";
 import * as d3 from "d3";
+import { useSelectedProduct } from "@/store/selectedProduct";
 
 const colors = [
     { name: "Slate", value: "#4A4A4A" },
@@ -26,23 +29,9 @@ type ConfigTab = "appearance" | "dimensions";
 export default function ConfiguratorSection() {
     const { color, setColor, material, setMaterial, width, height, depth, setDimensions } = useConfigurator();
     const [activeTab, setActiveTab] = useState<ConfigTab>("appearance");
-    const [flagship, setFlagship] = useState<Product | null>(null);
+    const { data: session } = useSession();
+    const { selected: flagship, setSelected } = useSelectedProduct();
     const chartRef = useRef<SVGSVGElement>(null);
-
-    useEffect(() => {
-        const fetchFlagship = async () => {
-            try {
-                const res = await fetch("/api/products");
-                const data = await res.json();
-                if (data.length > 0) {
-                    setFlagship(data[0]);
-                }
-            } catch (error) {
-                console.error("Failed to fetch products for configurator:", error);
-            }
-        };
-        fetchFlagship();
-    }, []);
 
     useEffect(() => {
         if (!chartRef.current) return;
@@ -72,6 +61,10 @@ export default function ConfiguratorSection() {
         const g = svg.append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
+        // Use CSS variable for bar color
+        const barColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-bar').trim() || '#111111';
+        const axisColor = getComputedStyle(document.documentElement).getPropertyValue('--chart-axis').trim() || '#6B7280';
+
         g.selectAll(".bar")
             .data(data)
             .enter().append("rect")
@@ -80,39 +73,41 @@ export default function ConfiguratorSection() {
             .attr("width", x.bandwidth())
             .attr("y", d => y(d.value))
             .attr("height", d => h - y(d.value))
-            .attr("fill", "#111111")
+            .attr("fill", barColor)
             .attr("rx", 4);
 
         g.append("g")
             .attr("transform", `translate(0,${h})`)
             .call(d3.axisBottom(x).tickSize(0).tickPadding(10))
-            .call(g => g.select(".domain").remove());
+            .call(g => g.select(".domain").remove())
+            .selectAll("text")
+            .attr("fill", axisColor);
 
     }, [width, height, depth]);
 
     return (
-        <section className="w-full min-h-screen bg-white flex flex-col md:flex-row items-stretch border-t border-gray-100">
+        <section id="configurator" className="w-full min-h-screen bg-background flex flex-col md:flex-row items-stretch border-t border-border transition-colors duration-300">
             {/* Left side: Selection Controls */}
-            <div className="w-full md:w-2/5 p-8 md:p-20 flex flex-col gap-12 border-r border-gray-100">
+            <div className="w-full md:w-2/5 p-8 md:p-20 flex flex-col gap-12 border-r border-border">
                 <div>
-                    <h2 className="text-xs uppercase tracking-[0.4em] text-gray-400 mb-2">Bespoke</h2>
-                    <h1 className="text-5xl md:text-7xl font-serif font-light text-gray-900 italic">Configurator</h1>
+                    <h2 className="text-xs uppercase tracking-[0.4em] text-muted mb-2">Bespoke</h2>
+                    <h1 className="text-5xl md:text-7xl font-serif font-light text-foreground italic">Configurator</h1>
                 </div>
 
                 {/* Tab Switcher */}
-                <div className="flex gap-8 border-b border-gray-100 pb-4">
+                <div className="flex gap-8 border-b border-border pb-4">
                     {(["appearance", "dimensions"] as ConfigTab[]).map((tab) => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={cn(
                                 "text-xs uppercase tracking-widest font-bold transition-all relative",
-                                activeTab === tab ? "text-gray-900" : "text-gray-300 hover:text-gray-500"
+                                activeTab === tab ? "text-foreground" : "text-muted hover:text-foreground/60"
                             )}
                         >
                             {tab}
                             {activeTab === tab && (
-                                <motion.div layoutId="tab-underline" className="absolute -bottom-4 left-0 right-0 h-0.5 bg-gray-900" />
+                                <motion.div layoutId="tab-underline" className="absolute -bottom-4 left-0 right-0 h-0.5 bg-accent" />
                             )}
                         </button>
                     ))}
@@ -130,7 +125,7 @@ export default function ConfiguratorSection() {
                             >
                                 {/* Color Selection */}
                                 <div className="flex flex-col gap-6">
-                                    <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Hue</label>
+                                    <label className="text-[10px] uppercase tracking-widest text-muted font-bold">Hue</label>
                                     <div className="flex flex-wrap gap-4">
                                         {colors.map((c) => (
                                             <button
@@ -138,7 +133,7 @@ export default function ConfiguratorSection() {
                                                 onClick={() => setColor(c.value)}
                                                 className={cn(
                                                     "w-10 h-10 rounded-full border-2 transition-all p-1",
-                                                    color === c.value ? "border-gray-900 scale-110" : "border-transparent hover:border-gray-200"
+                                                    color === c.value ? "border-accent scale-110" : "border-transparent hover:border-border-strong"
                                                 )}
                                             >
                                                 <div className="w-full h-full rounded-full" style={{ backgroundColor: c.value }} />
@@ -149,7 +144,7 @@ export default function ConfiguratorSection() {
 
                                 {/* Material Selection */}
                                 <div className="flex flex-col gap-6">
-                                    <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Textile</label>
+                                    <label className="text-[10px] uppercase tracking-widest text-muted font-bold">Textile</label>
                                     <div className="grid grid-cols-1 gap-3">
                                         {materials.map((m) => (
                                             <button
@@ -158,12 +153,12 @@ export default function ConfiguratorSection() {
                                                 className={cn(
                                                     "px-6 py-4 border rounded-xl text-left transition-all flex justify-between items-center",
                                                     material === m.id
-                                                        ? "border-gray-900 bg-gray-50 text-gray-900"
-                                                        : "border-gray-200 hover:border-gray-400 text-gray-400"
+                                                        ? "border-accent bg-surface-alt text-foreground"
+                                                        : "border-border-strong hover:border-muted text-muted"
                                                 )}
                                             >
                                                 <span className="text-sm font-medium">{m.name}</span>
-                                                {material === m.id && <div className="w-1.5 h-1.5 rounded-full bg-gray-900" />}
+                                                {material === m.id && <div className="w-1.5 h-1.5 rounded-full bg-accent" />}
                                             </button>
                                         ))}
                                     </div>
@@ -184,7 +179,7 @@ export default function ConfiguratorSection() {
                                         { label: "Depth (cm)", key: "depth", value: depth, min: 80, max: 150 },
                                     ].map((dim) => (
                                         <div key={dim.key} className="flex flex-col gap-4">
-                                            <div className="flex justify-between text-[10px] uppercase tracking-widest text-gray-500 font-bold">
+                                            <div className="flex justify-between text-[10px] uppercase tracking-widest text-muted font-bold">
                                                 <span>{dim.label}</span>
                                                 <span>{dim.value}</span>
                                             </div>
@@ -194,39 +189,61 @@ export default function ConfiguratorSection() {
                                                 max={dim.max}
                                                 value={dim.value}
                                                 onChange={(e) => setDimensions({ [dim.key]: parseInt(e.target.value) })}
-                                                className="w-full accent-gray-900 h-1 bg-gray-100 rounded-lg appearance-none cursor-pointer"
+                                                className="w-full h-1 rounded-lg appearance-none cursor-pointer"
                                             />
                                         </div>
                                     ))}
                                 </div>
 
                                 {/* D3 Spec Chart */}
-                                <div className="bg-gray-50 rounded-2xl p-6">
-                                    <h3 className="text-[10px] uppercase tracking-widest text-gray-400 mb-4 font-bold">Live Specifications Map</h3>
+                                <div className="bg-surface-alt rounded-2xl p-6 transition-colors duration-300">
+                                    <h3 className="text-[10px] uppercase tracking-widest text-muted mb-4 font-bold">Live Specifications Map</h3>
                                     <svg ref={chartRef} width="300" height="150" className="mx-auto" />
                                 </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
+
+                {/* Add to Cart Button with Client-Side Session Check */}
+                <div className="mt-8 pt-8 border-t border-border">
+                    <button
+                        onClick={() => {
+                            if (!session) {
+                                alert("Please log in to add items to your bespoke cart.");
+                                return;
+                            }
+                            alert("Added to cart! (Demo)");
+                        }}
+                        className="w-full py-4 bg-foreground text-background flex items-center justify-center gap-3 rounded-xl hover:opacity-90 transition-opacity font-bold uppercase tracking-widest text-xs"
+                    >
+                        <ShoppingCart size={16} />
+                        Add to Cart
+                    </button>
+                    {!session && (
+                        <p className="text-[10px] text-muted text-center mt-3 uppercase tracking-widest">
+                            Sign in required to save configuration
+                        </p>
+                    )}
+                </div>
             </div>
 
             {/* Right side: Large 3D Display */}
-            <div className="w-full md:w-3/5 relative bg-[#FAFAFA] flex items-center justify-center min-h-[600px]">
-                <Scene cameraPosition={[5, 2, 5]}>
+            <div className="w-full md:w-3/5 relative bg-surface-alt flex items-center justify-center min-h-[600px] transition-colors duration-300">
+                <Scene cameraPosition={[8, 2, 8]}>
                     {flagship && (
                         <ProductModel
                             url={flagship.modelUrl}
                             scale={2.5}
-                            position={[0, -0.8, 0]}
+                            position={[0, -0.2, 0]}
                         />
                     )}
                 </Scene>
 
                 {/* Info Hud */}
                 <div className="absolute bottom-12 right-12 text-right pointer-events-none">
-                    <div className="text-xs tracking-[0.4em] text-gray-300 uppercase mb-2 italic">{flagship?.name || "Aura Collection"}</div>
-                    <div className="text-4xl font-serif text-gray-900 italic">2024 Edition</div>
+                    <div className="text-xs tracking-[0.4em] text-muted uppercase mb-2 italic">{flagship?.name || "Aura Collection"}</div>
+                    <div className="text-4xl font-serif text-foreground italic">2024 Edition</div>
                 </div>
             </div>
         </section>

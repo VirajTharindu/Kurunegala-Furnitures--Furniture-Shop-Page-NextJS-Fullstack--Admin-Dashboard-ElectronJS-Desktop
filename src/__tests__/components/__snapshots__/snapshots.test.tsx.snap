@@ -1,0 +1,982 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ConfiguratorSection — snapshots matches snapshot when authenticated (hides sign-in prompt) 1`] = `
+<DocumentFragment>
+  <section
+    class="w-full min-h-screen bg-background flex flex-col md:flex-row items-stretch border-t border-border transition-colors duration-300"
+    id="configurator"
+  >
+    <div
+      class="w-full md:w-2/5 p-8 md:p-20 flex flex-col gap-12 border-r border-border"
+    >
+      <div>
+        <h2
+          class="text-xs uppercase tracking-[0.4em] text-muted mb-2"
+        >
+          Bespoke
+        </h2>
+        <h1
+          class="text-5xl md:text-7xl font-serif font-light text-foreground italic"
+        >
+          Configurator
+        </h1>
+      </div>
+      <div
+        class="flex gap-8 border-b border-border pb-4"
+      >
+        <button
+          class="text-xs uppercase tracking-widest font-bold transition-all relative text-foreground"
+        >
+          appearance
+          <div
+            class="absolute -bottom-4 left-0 right-0 h-0.5 bg-accent"
+          />
+        </button>
+        <button
+          class="text-xs uppercase tracking-widest font-bold transition-all relative text-muted hover:text-foreground/60"
+        >
+          dimensions
+        </button>
+      </div>
+      <div
+        class="flex-1"
+      >
+        <div
+          class="flex flex-col gap-12"
+        >
+          <div
+            class="flex flex-col gap-6"
+          >
+            <label
+              class="text-[10px] uppercase tracking-widest text-muted font-bold"
+            >
+              Hue
+            </label>
+            <div
+              class="flex flex-wrap gap-4"
+            >
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-accent scale-110"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(74, 74, 74);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(245, 245, 220);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(26, 46, 68);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(160, 82, 45);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(45, 74, 62);"
+                />
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-6"
+          >
+            <label
+              class="text-[10px] uppercase tracking-widest text-muted font-bold"
+            >
+              Textile
+            </label>
+            <div
+              class="grid grid-cols-1 gap-3"
+            >
+              <button
+                class="px-6 py-4 border rounded-xl text-left transition-all flex justify-between items-center border-accent bg-surface-alt text-foreground"
+              >
+                <span
+                  class="text-sm font-medium"
+                >
+                  Textured Fabric
+                </span>
+                <div
+                  class="w-1.5 h-1.5 rounded-full bg-accent"
+                />
+              </button>
+              <button
+                class="px-6 py-4 border rounded-xl text-left transition-all flex justify-between items-center border-border-strong hover:border-muted text-muted"
+              >
+                <span
+                  class="text-sm font-medium"
+                >
+                  Genuine Leather
+                </span>
+              </button>
+              <button
+                class="px-6 py-4 border rounded-xl text-left transition-all flex justify-between items-center border-border-strong hover:border-muted text-muted"
+              >
+                <span
+                  class="text-sm font-medium"
+                >
+                  Royal Velvet
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-8 pt-8 border-t border-border"
+      >
+        <button
+          class="w-full py-4 bg-foreground text-background flex items-center justify-center gap-3 rounded-xl hover:opacity-90 transition-opacity font-bold uppercase tracking-widest text-xs"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-shopping-cart"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="8"
+              cy="21"
+              r="1"
+            />
+            <circle
+              cx="19"
+              cy="21"
+              r="1"
+            />
+            <path
+              d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+            />
+          </svg>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+    <div
+      class="w-full md:w-3/5 relative bg-surface-alt flex items-center justify-center min-h-[600px] transition-colors duration-300"
+    >
+      <div
+        data-testid="scene-mock"
+      >
+        <div
+          data-testid="product-model-mock"
+        />
+      </div>
+      <div
+        class="absolute bottom-12 right-12 text-right pointer-events-none"
+      >
+        <div
+          class="text-xs tracking-[0.4em] text-muted uppercase mb-2 italic"
+        >
+          Aura Chair
+        </div>
+        <div
+          class="text-4xl font-serif text-foreground italic"
+        >
+          2024 Edition
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`ConfiguratorSection — snapshots matches snapshot when unauthenticated (shows sign-in prompt) 1`] = `
+<DocumentFragment>
+  <section
+    class="w-full min-h-screen bg-background flex flex-col md:flex-row items-stretch border-t border-border transition-colors duration-300"
+    id="configurator"
+  >
+    <div
+      class="w-full md:w-2/5 p-8 md:p-20 flex flex-col gap-12 border-r border-border"
+    >
+      <div>
+        <h2
+          class="text-xs uppercase tracking-[0.4em] text-muted mb-2"
+        >
+          Bespoke
+        </h2>
+        <h1
+          class="text-5xl md:text-7xl font-serif font-light text-foreground italic"
+        >
+          Configurator
+        </h1>
+      </div>
+      <div
+        class="flex gap-8 border-b border-border pb-4"
+      >
+        <button
+          class="text-xs uppercase tracking-widest font-bold transition-all relative text-foreground"
+        >
+          appearance
+          <div
+            class="absolute -bottom-4 left-0 right-0 h-0.5 bg-accent"
+          />
+        </button>
+        <button
+          class="text-xs uppercase tracking-widest font-bold transition-all relative text-muted hover:text-foreground/60"
+        >
+          dimensions
+        </button>
+      </div>
+      <div
+        class="flex-1"
+      >
+        <div
+          class="flex flex-col gap-12"
+        >
+          <div
+            class="flex flex-col gap-6"
+          >
+            <label
+              class="text-[10px] uppercase tracking-widest text-muted font-bold"
+            >
+              Hue
+            </label>
+            <div
+              class="flex flex-wrap gap-4"
+            >
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-accent scale-110"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(74, 74, 74);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(245, 245, 220);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(26, 46, 68);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(160, 82, 45);"
+                />
+              </button>
+              <button
+                class="w-10 h-10 rounded-full border-2 transition-all p-1 border-transparent hover:border-border-strong"
+              >
+                <div
+                  class="w-full h-full rounded-full"
+                  style="background-color: rgb(45, 74, 62);"
+                />
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-6"
+          >
+            <label
+              class="text-[10px] uppercase tracking-widest text-muted font-bold"
+            >
+              Textile
+            </label>
+            <div
+              class="grid grid-cols-1 gap-3"
+            >
+              <button
+                class="px-6 py-4 border rounded-xl text-left transition-all flex justify-between items-center border-accent bg-surface-alt text-foreground"
+              >
+                <span
+                  class="text-sm font-medium"
+                >
+                  Textured Fabric
+                </span>
+                <div
+                  class="w-1.5 h-1.5 rounded-full bg-accent"
+                />
+              </button>
+              <button
+                class="px-6 py-4 border rounded-xl text-left transition-all flex justify-between items-center border-border-strong hover:border-muted text-muted"
+              >
+                <span
+                  class="text-sm font-medium"
+                >
+                  Genuine Leather
+                </span>
+              </button>
+              <button
+                class="px-6 py-4 border rounded-xl text-left transition-all flex justify-between items-center border-border-strong hover:border-muted text-muted"
+              >
+                <span
+                  class="text-sm font-medium"
+                >
+                  Royal Velvet
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-8 pt-8 border-t border-border"
+      >
+        <button
+          class="w-full py-4 bg-foreground text-background flex items-center justify-center gap-3 rounded-xl hover:opacity-90 transition-opacity font-bold uppercase tracking-widest text-xs"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-shopping-cart"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="8"
+              cy="21"
+              r="1"
+            />
+            <circle
+              cx="19"
+              cy="21"
+              r="1"
+            />
+            <path
+              d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+            />
+          </svg>
+          Add to Cart
+        </button>
+        <p
+          class="text-[10px] text-muted text-center mt-3 uppercase tracking-widest"
+        >
+          Sign in required to save configuration
+        </p>
+      </div>
+    </div>
+    <div
+      class="w-full md:w-3/5 relative bg-surface-alt flex items-center justify-center min-h-[600px] transition-colors duration-300"
+    >
+      <div
+        data-testid="scene-mock"
+      >
+        <div
+          data-testid="product-model-mock"
+        />
+      </div>
+      <div
+        class="absolute bottom-12 right-12 text-right pointer-events-none"
+      >
+        <div
+          class="text-xs tracking-[0.4em] text-muted uppercase mb-2 italic"
+        >
+          Aura Chair
+        </div>
+        <div
+          class="text-4xl font-serif text-foreground italic"
+        >
+          2024 Edition
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`Navbar — snapshots matches snapshot when authenticated as a regular user 1`] = `
+<DocumentFragment>
+  <nav
+    class="fixed top-0 left-0 w-full z-50 px-10 py-8 flex items-center justify-between transition-colors duration-300 "
+  >
+    <div
+      class="flex items-center gap-12 text-[10px] uppercase tracking-[0.4em] text-foreground font-bold"
+    >
+      <button
+        class="hover:opacity-50 transition-opacity"
+      >
+        Menu
+      </button>
+      <a
+        class="hover:opacity-50 transition-opacity hidden md:block"
+        href="/#categories"
+      >
+        Collections
+      </a>
+    </div>
+    <div
+      class="absolute left-1/2 -translate-x-1/2"
+    >
+      <a
+        href="/"
+      >
+        <h1
+          class="text-2xl font-serif italic tracking-tight text-foreground"
+        >
+          Kurunegala.
+        </h1>
+      </a>
+    </div>
+    <div
+      class="flex items-center gap-6"
+    >
+      <button
+        aria-label="Switch to light mode"
+        class="relative w-10 h-10 rounded-full bg-surface border border-border-strong flex items-center justify-center overflow-hidden hover:border-accent/30 transition-colors shadow-lg backdrop-blur-md"
+      >
+        <div>
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-sun text-amber-400"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+            />
+            <path
+              d="M12 2v2"
+            />
+            <path
+              d="M12 20v2"
+            />
+            <path
+              d="m4.93 4.93 1.41 1.41"
+            />
+            <path
+              d="m17.66 17.66 1.41 1.41"
+            />
+            <path
+              d="M2 12h2"
+            />
+            <path
+              d="M20 12h2"
+            />
+            <path
+              d="m6.34 17.66-1.41 1.41"
+            />
+            <path
+              d="m19.07 4.93-1.41 1.41"
+            />
+          </svg>
+        </div>
+      </button>
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-search text-foreground cursor-pointer hover:opacity-50 transition-opacity"
+        fill="none"
+        height="18"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m21 21-4.34-4.34"
+        />
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+      </svg>
+      <div
+        class="relative cursor-pointer hover:opacity-50 transition-opacity"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-shopping-bag text-foreground"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 10a4 4 0 0 1-8 0"
+          />
+          <path
+            d="M3.103 6.034h17.794"
+          />
+          <path
+            d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+          />
+        </svg>
+        <span
+          class="absolute -top-2 -right-2 w-4 h-4 bg-accent text-accent-foreground text-[8px] flex items-center justify-center rounded-full"
+        >
+          0
+        </span>
+      </div>
+      <div
+        class="relative flex items-center gap-2"
+      >
+        <a
+          class="relative z-50 flex items-center gap-2 hover:opacity-70 transition-opacity"
+          href="/profile"
+          title="View profile"
+        >
+          <div
+            class="w-7 h-7 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-[10px] font-bold ring-2 ring-accent/30"
+          >
+            V
+          </div>
+        </a>
+        <button
+          class="relative z-50 text-foreground/50 hover:text-foreground transition-colors text-lg leading-none pb-1"
+          title="More options"
+        >
+          ···
+        </button>
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`Navbar — snapshots matches snapshot when authenticated as an admin 1`] = `
+<DocumentFragment>
+  <nav
+    class="fixed top-0 left-0 w-full z-50 px-10 py-8 flex items-center justify-between transition-colors duration-300 "
+  >
+    <div
+      class="flex items-center gap-12 text-[10px] uppercase tracking-[0.4em] text-foreground font-bold"
+    >
+      <button
+        class="hover:opacity-50 transition-opacity"
+      >
+        Menu
+      </button>
+      <a
+        class="hover:opacity-50 transition-opacity hidden md:block"
+        href="/#categories"
+      >
+        Collections
+      </a>
+    </div>
+    <div
+      class="absolute left-1/2 -translate-x-1/2"
+    >
+      <a
+        href="/"
+      >
+        <h1
+          class="text-2xl font-serif italic tracking-tight text-foreground"
+        >
+          Kurunegala.
+        </h1>
+      </a>
+    </div>
+    <div
+      class="flex items-center gap-6"
+    >
+      <button
+        aria-label="Switch to light mode"
+        class="relative w-10 h-10 rounded-full bg-surface border border-border-strong flex items-center justify-center overflow-hidden hover:border-accent/30 transition-colors shadow-lg backdrop-blur-md"
+      >
+        <div>
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-sun text-amber-400"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+            />
+            <path
+              d="M12 2v2"
+            />
+            <path
+              d="M12 20v2"
+            />
+            <path
+              d="m4.93 4.93 1.41 1.41"
+            />
+            <path
+              d="m17.66 17.66 1.41 1.41"
+            />
+            <path
+              d="M2 12h2"
+            />
+            <path
+              d="M20 12h2"
+            />
+            <path
+              d="m6.34 17.66-1.41 1.41"
+            />
+            <path
+              d="m19.07 4.93-1.41 1.41"
+            />
+          </svg>
+        </div>
+      </button>
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-search text-foreground cursor-pointer hover:opacity-50 transition-opacity"
+        fill="none"
+        height="18"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m21 21-4.34-4.34"
+        />
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+      </svg>
+      <div
+        class="relative cursor-pointer hover:opacity-50 transition-opacity"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-shopping-bag text-foreground"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 10a4 4 0 0 1-8 0"
+          />
+          <path
+            d="M3.103 6.034h17.794"
+          />
+          <path
+            d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+          />
+        </svg>
+        <span
+          class="absolute -top-2 -right-2 w-4 h-4 bg-accent text-accent-foreground text-[8px] flex items-center justify-center rounded-full"
+        >
+          0
+        </span>
+      </div>
+      <div
+        class="relative flex items-center gap-2"
+      >
+        <a
+          class="relative z-50 flex items-center gap-2 hover:opacity-70 transition-opacity"
+          href="/profile"
+          title="View profile"
+        >
+          <div
+            class="w-7 h-7 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-[10px] font-bold ring-2 ring-accent/30"
+          >
+            A
+          </div>
+        </a>
+        <button
+          class="relative z-50 text-foreground/50 hover:text-foreground transition-colors text-lg leading-none pb-1"
+          title="More options"
+        >
+          ···
+        </button>
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`Navbar — snapshots matches snapshot when unauthenticated 1`] = `
+<DocumentFragment>
+  <nav
+    class="fixed top-0 left-0 w-full z-50 px-10 py-8 flex items-center justify-between transition-colors duration-300 "
+  >
+    <div
+      class="flex items-center gap-12 text-[10px] uppercase tracking-[0.4em] text-foreground font-bold"
+    >
+      <button
+        class="hover:opacity-50 transition-opacity"
+      >
+        Menu
+      </button>
+      <a
+        class="hover:opacity-50 transition-opacity hidden md:block"
+        href="/#categories"
+      >
+        Collections
+      </a>
+    </div>
+    <div
+      class="absolute left-1/2 -translate-x-1/2"
+    >
+      <a
+        href="/"
+      >
+        <h1
+          class="text-2xl font-serif italic tracking-tight text-foreground"
+        >
+          Kurunegala.
+        </h1>
+      </a>
+    </div>
+    <div
+      class="flex items-center gap-6"
+    >
+      <button
+        aria-label="Switch to light mode"
+        class="relative w-10 h-10 rounded-full bg-surface border border-border-strong flex items-center justify-center overflow-hidden hover:border-accent/30 transition-colors shadow-lg backdrop-blur-md"
+      >
+        <div>
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-sun text-amber-400"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+            />
+            <path
+              d="M12 2v2"
+            />
+            <path
+              d="M12 20v2"
+            />
+            <path
+              d="m4.93 4.93 1.41 1.41"
+            />
+            <path
+              d="m17.66 17.66 1.41 1.41"
+            />
+            <path
+              d="M2 12h2"
+            />
+            <path
+              d="M20 12h2"
+            />
+            <path
+              d="m6.34 17.66-1.41 1.41"
+            />
+            <path
+              d="m19.07 4.93-1.41 1.41"
+            />
+          </svg>
+        </div>
+      </button>
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-search text-foreground cursor-pointer hover:opacity-50 transition-opacity"
+        fill="none"
+        height="18"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="18"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m21 21-4.34-4.34"
+        />
+        <circle
+          cx="11"
+          cy="11"
+          r="8"
+        />
+      </svg>
+      <div
+        class="relative cursor-pointer hover:opacity-50 transition-opacity"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-shopping-bag text-foreground"
+          fill="none"
+          height="18"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 10a4 4 0 0 1-8 0"
+          />
+          <path
+            d="M3.103 6.034h17.794"
+          />
+          <path
+            d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"
+          />
+        </svg>
+        <span
+          class="absolute -top-2 -right-2 w-4 h-4 bg-accent text-accent-foreground text-[8px] flex items-center justify-center rounded-full"
+        >
+          0
+        </span>
+      </div>
+      <a
+        class="text-[10px] uppercase tracking-[0.2em] font-bold hover:opacity-50 transition-opacity flex items-center gap-2"
+        href="/login"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-user"
+          fill="none"
+          height="14"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="14"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
+          />
+          <circle
+            cx="12"
+            cy="7"
+            r="4"
+          />
+        </svg>
+        Login
+      </a>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`ThemeToggle — snapshots matches snapshot in dark mode 1`] = `
+<DocumentFragment>
+  <button
+    aria-label="Switch to light mode"
+    class="relative w-10 h-10 rounded-full bg-surface border border-border-strong flex items-center justify-center overflow-hidden hover:border-accent/30 transition-colors shadow-lg backdrop-blur-md"
+  >
+    <div>
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-sun text-amber-400"
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+        />
+        <path
+          d="M12 2v2"
+        />
+        <path
+          d="M12 20v2"
+        />
+        <path
+          d="m4.93 4.93 1.41 1.41"
+        />
+        <path
+          d="m17.66 17.66 1.41 1.41"
+        />
+        <path
+          d="M2 12h2"
+        />
+        <path
+          d="M20 12h2"
+        />
+        <path
+          d="m6.34 17.66-1.41 1.41"
+        />
+        <path
+          d="m19.07 4.93-1.41 1.41"
+        />
+      </svg>
+    </div>
+  </button>
+</DocumentFragment>
+`;

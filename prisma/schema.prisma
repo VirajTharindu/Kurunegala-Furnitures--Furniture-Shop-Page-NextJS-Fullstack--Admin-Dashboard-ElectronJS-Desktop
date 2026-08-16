@@ -1,0 +1,87 @@
+// Prisma schema for Kurunegala Furniture Shop
+// Provider: Microsoft SQL Server (MSSQL)
+// This schema defines all core e‑commerce entities with their relations.
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlserver"
+  // In Prisma v7, url is handled by prisma.config.ts (CLI) and driver adapter (runtime)
+}
+
+// Models
+model Product {
+  id           String   @id @default(uuid())
+  name         String
+  category     String      // Was Enum, now String
+  price        Decimal
+  description  String
+  availability String
+  modelUrl     String
+  tags         String      // Was String[], now String (store as comma-separated!)
+  specs        String      @db.NVarChar(Max) // Was Json, now a large String to store stringified JSON
+  // Relations
+  cartItems    CartItem[]
+  orderItems   OrderItem[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  role         String      @default("CUSTOMER") // Was Enum, now String
+  // Relations
+  cart         Cart?
+  orders       Order[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Cart {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id          String        @id @default(uuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id])
+  status      String      @default("PENDING") // Was Enum, now String
+  totalAmount Decimal
+  items       OrderItem[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Decimal
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

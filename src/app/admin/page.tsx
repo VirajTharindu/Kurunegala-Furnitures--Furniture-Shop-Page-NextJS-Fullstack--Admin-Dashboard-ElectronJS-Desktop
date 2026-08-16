@@ -6,7 +6,7 @@ import Scene from "@/components/canvas/Scene";
 import ProductModel from "@/components/models/ProductModel";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
-import { Product } from "@/lib/db";
+import { FrontendProduct } from "@/types/product";
 
 const stats = [
     { label: "Total Revenue", value: "$428,500", trend: "+12.5%", icon: DollarSign, color: "text-amber-500" },
@@ -24,15 +24,15 @@ const mockSales = [
 ];
 
 export default function AdminDashboard() {
-    const [flagship, setFlagship] = useState<Product | null>(null);
+    const [flagship, setFlagship] = useState<FrontendProduct | null>(null);
 
     useEffect(() => {
         const fetchFlagship = async () => {
             try {
-                const res = await fetch("/api/products");
+                const res = await fetch("/api/products?page=1&limit=1");
                 const data = await res.json();
-                if (data.length > 0) {
-                    setFlagship(data[0]);
+                if (data.products && data.products.length > 0) {
+                    setFlagship(data.products[0]);
                 }
             } catch (error) {
                 console.error("Failed to fetch flagship for dashboard:", error);

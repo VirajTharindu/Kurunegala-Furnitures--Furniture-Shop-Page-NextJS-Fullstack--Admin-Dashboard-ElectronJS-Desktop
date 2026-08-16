@@ -1,0 +1,132 @@
+# ─────────────────────────────────────────────────────────────────────
+# Kurunegala Furnitures — Optimized GraphQL Schema
+# ─────────────────────────────────────────────────────────────────────
+
+# ── Custom Scalars ──────────────────────────────────────────────────
+scalar DateTime
+
+# ── Enums (Data Integrity Guards) ───────────────────────────────────
+enum OrderStatus {
+    PENDING
+    PROCESSING
+    SHIPPED
+    DELIVERED
+    CANCELLED
+}
+
+enum Availability {
+    IN_STOCK
+    OUT_OF_STOCK
+    PREORDER
+    DISCONTINUED
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+# ── Product ─────────────────────────────────────────────────────────
+type ProductSpecs {
+    width: Int
+    height: Int
+    depth: Int
+    weight: Int
+    material: String
+}
+
+type Product {
+    id: ID!
+    name: String!
+    category: String!
+    price: Float!
+    description: String!
+    availability: Availability! # Upgraded from String
+    modelUrl: String!
+    tags: [String!]!
+    specs: ProductSpecs
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+# ── User ────────────────────────────────────────────────────────────
+type User {
+    id: ID!
+    email: String!
+    name: String
+    role: Role!
+    cart: Cart
+    orders(limit: Int, offset: Int): [Order!]! # Added pagination 
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+# ── Order ───────────────────────────────────────────────────────────
+type Order {
+    id: ID!
+    userId: ID!
+    user: User!
+    totalAmount: Float!
+    status: OrderStatus!
+    items: [OrderItem!]!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+# ── OrderItem ───────────────────────────────────────────────────────
+type OrderItem {
+    id: ID!
+    orderId: ID!
+    product: Product!
+    quantity: Int!
+    unitPrice: Float!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+# ── Cart ────────────────────────────────────────────────────────────
+type Cart {
+    id: ID!
+    items: [CartItem!]!
+    totalPrice: Float! # Useful for UI displays
+}
+
+type CartItem {
+    id: ID!
+    product: Product!
+    quantity: Int!
+}
+
+# ── Queries (The Read Engine) ───────────────────────────────────────
+type Query {
+    # Fetch a single product
+    product(id: ID!): Product
+    
+    # Fetch all products with pagination to save bandwidth
+    # products(limit: Int = 10, offset:  Int = 0): [Product!]!
+    
+    # Order management
+    orders(limit: Int = 20, offset: Int = 0): [Order!]!
+    order(id: ID!): Order
+    
+    # User profile
+    me: User # Returns current logged-in user
+    user(id: ID!): User
+}
+
+
+# ── Mutations (The Write Engine) ───────────────────────────────────
+
+#type Mutation {
+    # Shopping Actions
+    # addToCart(productId: ID!, quantity: Int!): Cart
+    # removeFromCart(productId: ID!): Cart
+    # clearCart: Boolean
+    
+    # Checkout Action
+    # placeOrder(cartId: ID!): Order
+    
+    # Admin Actions
+    # updateOrderStatus(orderId: ID!, status: OrderStatus!): Order
+    # updateProductStock(productId: ID!, availability: Availability!): Product
+#}

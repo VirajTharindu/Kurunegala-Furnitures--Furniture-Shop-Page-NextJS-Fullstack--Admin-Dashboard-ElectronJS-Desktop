@@ -16,6 +16,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import WindowControls from "./WindowControls";
+import { useSession, signOut } from "next-auth/react";
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/admin" },
@@ -29,6 +30,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const pathname = usePathname();
     const router = useRouter();
     const [searchQuery, setSearchQuery] = React.useState("");
+    const { data: session } = useSession();
+
+    const handleLogout = async () => {
+        await signOut({ callbackUrl: "/login" });
+    };
 
     return (
         <div className="flex flex-col h-screen bg-black text-white overflow-hidden font-sans border border-white/5">
@@ -79,8 +85,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </nav>
 
                     <div className="mt-auto pt-6 border-t border-white/10">
-                        <button 
-                            onClick={() => router.push('/')}
+                        <button
+                            onClick={handleLogout}
                             className="flex items-center gap-4 px-4 py-3 text-white/40 hover:text-red-400 transition-colors w-full group"
                         >
                             <LogOut className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -93,7 +99,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <div className="flex-1 flex flex-col overflow-hidden relative">
                     {/* Header */}
                     <header className="h-20 border-b border-white/10 flex items-center justify-between px-10 bg-black/50 backdrop-blur-md z-40">
-                        <form 
+                        <form
                             onSubmit={(e) => {
                                 e.preventDefault();
                                 if (searchQuery) router.push(`/admin/inventory?q=${encodeURIComponent(searchQuery)}`);
@@ -117,10 +123,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             </button>
                             <div className="flex items-center gap-3">
                                 <div className="text-right">
-                                    <div className="text-sm font-bold">Admin User</div>
-                                    <div className="text-[10px] text-white/40 uppercase tracking-widest">Manager</div>
+                                    <div className="text-sm font-bold">{session?.user?.name || "Admin User"}</div>
+                                    <div className="text-[10px] text-white/40 uppercase tracking-widest">{session?.user?.role || "Manager"}</div>
                                 </div>
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 border border-white/20" />
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-600 to-amber-900 border border-white/20 flex items-center justify-center text-xs font-bold">
+                                    {session?.user?.name?.[0] || "A"}
+                                </div>
                             </div>
                         </div>
                     </header>

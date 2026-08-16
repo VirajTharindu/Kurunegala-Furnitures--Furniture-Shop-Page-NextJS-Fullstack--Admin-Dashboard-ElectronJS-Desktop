@@ -14,7 +14,7 @@ const RoomVisualizer = dynamic(() => import("@/components/sections/RoomVisualize
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white relative overflow-x-hidden selection:bg-gray-900 selection:text-white">
+    <main className="min-h-screen bg-background relative overflow-x-hidden">
       <LoadingScreen />
       <CustomCursor />
       <Navbar />

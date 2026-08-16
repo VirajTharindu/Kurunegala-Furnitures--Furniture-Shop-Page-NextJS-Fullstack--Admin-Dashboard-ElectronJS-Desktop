@@ -28,7 +28,7 @@ The system focuses on **real-time 3D rendering and high-performance WebGL integr
 | 🖼️ **Room Visualizer** | Place furniture in various room environments and presets with high-performance shaders |
 | 📊 **Desktop Admin Terminal** | Dedicated ElectronJS desktop application for secure, real-time inventory and sales management |
 | ⚡ **Fluid Animations** | High-fidelity scrolling and interactive states powered by `framer-motion` and `gsap` |
-| 🎨 **Admin Executive Dashboard** | D3-powered analytics, recent sales activity, and live 3D asset previews for administrators |
+| 🎨 **Dashboard & charts** | D3-powered analytics, recent sales activity, and live 3D asset previews for administrators & users |
 
 ---
 
@@ -62,7 +62,7 @@ If deeper technical access is required, it can be provided upon request.
 # 📸 Screenshots
 
 ### User Storefront
-**Home & 3D Model:**
+**Hero & 3D Model:**
 <img src="docs/screenshots/1_User_Home.png" width="800" />
 
 **Collections:**
@@ -122,10 +122,8 @@ During development of Kurunegala Furnitures the focus areas included:
 
 - **WebGL Optimization Context:** Managing complex GLTF/GLB models dynamically inside React components without tanking FPS. Heavily utilized `useMemo` for materials and scene objects.
 - **Unified Codebase (Web & Desktop):** Architecting the app so standard web consumers and Electron desktop admins share the same Next.js core, decoupled by route segments.
-- **Custom Shaders in React:** Implementing custom BackgroundShaders via native Three.js ShaderMaterials mounted via React components for premium atmospheric aesthetics.
 - **Complex UI/UX Synchrony:** Ensuring Zustand state perfectly matches `framer-motion` layout animations and WebGL material updates simultaneously.
 - **Windows MAX_PATH Limits:** Learning how modern bundlers interact with OS-level path restrictions, resulting in a fallback Webpack strategy for deep bundle structures.
-- **Mastering the Hybrid Monolith:** Orchestrating a single codebase for both web and desktop (Electron) contexts.
 
 If you need any further information or clarifications, go to the [Engineering Lessons](docs/engineering_lessons.md).
 
@@ -157,7 +155,7 @@ If you need any further information or clarifications, go to the [Design Decisio
 Key upcoming features planned for Kurunegala Furnitures:
 
 - ✅ **DONE** — Core 3D engine integration and GLB loaders
-- ✅ **DONE** — Rebranding and initial application structure 
+- ✅ **DONE** — Other elements and theme integrations
 - 🔄 **IN PROGRESS** — MSSQL Database integration replacing local JSON
 - ⏳ **NOT STARTED** — Stripe Payment Gateway Checkout
 - ⏳ **NOT STARTED** — Admin Order Fulfilment Workflows
@@ -168,9 +166,9 @@ Key upcoming features planned for Kurunegala Furnitures:
 
 Planned enhancements include:
 
-- Multi-environment staging support (Vercel edge for Web, local secure server for Electron DB).
-- Procedural texture generation for 3D materials.
 - Role Based Access Control (RBAC) securely locked inside the Electron IPC bridge.
+- Web and Desktop App synchronization - This will allow you to make changes in the web app and see them in the desktop app.
+- Webhooks for order fulfilment - This will allow you to get notified when an order is placed.
 
 ---
 

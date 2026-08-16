@@ -5,11 +5,12 @@ import Scene from "@/components/canvas/Scene";
 import ProductModel from "@/components/models/ProductModel";
 import { AnimatePresence, useSpring, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Product } from "@/lib/db";
+import { FrontendProduct } from "@/types/product";
+import { useSelectedProduct } from "@/store/selectedProduct";
 
 export default function Categories() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [selected, setSelected] = useState<Product | null>(null);
+    const [products, setProducts] = useState<FrontendProduct[]>([]);
+    const { selected, setSelected } = useSelectedProduct();
     const [loading, setLoading] = useState(true);
     const progress = useSpring(0, { stiffness: 100, damping: 30 });
 
@@ -18,9 +19,10 @@ export default function Categories() {
             try {
                 const res = await fetch("/api/products");
                 const data = await res.json();
-                setProducts(data);
-                if (data.length > 0) {
-                    setSelected(data[0]);
+                const items = Array.isArray(data.products) ? data.products : [];
+                setProducts(items);
+                if (items.length > 0) {
+                    setSelected(items[0]);
                 }
             } catch (error) {
                 console.error("Failed to fetch products for categories:", error);
@@ -38,15 +40,15 @@ export default function Categories() {
     }, [selected, progress, products]);
 
     if (loading || products.length === 0) return (
-        <section className="w-full h-screen bg-[#FDFDFD]" />
+        <section className="w-full h-screen bg-surface transition-colors duration-300" />
     );
 
     return (
-        <section className="relative w-full min-h-screen bg-[#FDFDFD] flex flex-col md:flex-row items-center justify-between px-6 md:px-24 py-32 overflow-hidden select-none">
+        <section id="categories" className="relative w-full min-h-screen bg-surface flex flex-col md:flex-row items-center justify-between px-6 md:px-24 py-32 overflow-hidden select-none transition-colors duration-300">
             {/* Liquid Background Effect Overlay */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-50" style={{ filter: 'blur(80px)' }}>
-                <circle cx="10%" cy="20%" r="300" fill="#F3E5F5" />
-                <circle cx="90%" cy="80%" r="400" fill="#E3F2FD" />
+                <circle cx="10%" cy="20%" r="300" fill="var(--liquid-a)" />
+                <circle cx="90%" cy="80%" r="400" fill="var(--liquid-b)" />
             </svg>
 
             {/* Left side: Text Info */}
@@ -54,7 +56,7 @@ export default function Categories() {
                 <motion.h2
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    className="text-xs uppercase tracking-[0.5em] text-gray-400 mb-12 font-medium"
+                    className="text-xs uppercase tracking-[0.5em] text-muted mb-12 font-medium"
                 >
                     Curated Collections
                 </motion.h2>
@@ -69,9 +71,9 @@ export default function Categories() {
                                 selected?.id === cat.id ? "opacity-100" : "opacity-20 hover:opacity-40"
                             )}
                         >
-                            <span className="text-12 md:text-16 font-serif text-gray-300 pointer-events-none">0{idx + 1}</span>
+                            <span className="text-12 md:text-16 font-serif text-muted pointer-events-none">0{idx + 1}</span>
                             <span className={cn(
-                                "text-5xl md:text-8xl font-serif font-light block transition-all tracking-tighter",
+                                "text-5xl md:text-8xl font-serif font-light block transition-all tracking-tighter text-foreground",
                                 selected?.id === cat.id ? "italic translate-x-4" : ""
                             )}>
                                 {cat.name}
@@ -80,7 +82,7 @@ export default function Categories() {
                             {selected?.id === cat.id && (
                                 <motion.div
                                     layoutId="liquid-pill"
-                                    className="absolute -left-8 top-1/2 -translate-y-1/2 w-2 h-16 bg-gray-900 rounded-full"
+                                    className="absolute -left-8 top-1/2 -translate-y-1/2 w-2 h-16 bg-accent rounded-full"
                                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                 />
                             )}
@@ -99,10 +101,10 @@ export default function Categories() {
                                 transition={{ duration: 0.5 }}
                                 className="max-w-sm"
                             >
-                                <p className="text-lg text-gray-600 leading-relaxed font-sans mb-4">
+                                <p className="text-lg text-muted leading-relaxed font-sans mb-4">
                                     {selected.description}
                                 </p>
-                                <span className="text-xs uppercase tracking-widest text-gray-400 font-bold">
+                                <span className="text-xs uppercase tracking-widest text-muted font-bold">
                                     {selected.specs.material || "Premium Selection"} • {selected.specs.width}cm
                                 </span>
                             </motion.div>
@@ -124,11 +126,11 @@ export default function Categories() {
                                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                                 className="w-full h-full"
                             >
-                                <Scene cameraPosition={[3, 2, 4]} enableControls={true}>
+                                <Scene cameraPosition={[4, 4, 4]} enableControls={true}>
                                     <ProductModel
                                         url={selected.modelUrl}
                                         scale={selected.category === 'Chairs' ? 1.4 : 1.8}
-                                        position={[0, -0.8, 0]}
+                                        position={[0, -0.2, 0]}
                                     />
                                 </Scene>
                             </motion.div>
@@ -137,13 +139,13 @@ export default function Categories() {
                 </div>
 
                 {/* Decorative Elements */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-radial from-gray-100 to-transparent opacity-50 -z-10" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-radial from-surface-hover to-transparent opacity-50 -z-10" />
             </div>
 
             {/* Vertical Progress Indicator */}
-            <div className="hidden md:block absolute left-12 top-1/2 -translate-y-1/2 h-64 w-px bg-gray-100 mt-20">
+            <div className="hidden md:block absolute left-12 top-1/2 -translate-y-1/2 h-64 w-px bg-border mt-20">
                 <motion.div
-                    className="w-full bg-gray-900 origin-top"
+                    className="w-full bg-accent origin-top"
                     style={{ height: "100%", scaleY: progress }}
                 />
             </div>

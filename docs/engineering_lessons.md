@@ -15,9 +15,6 @@ Architecting the app so standard web consumers and Electron desktop admins share
 - Decoupling logic into `src/lib` and `src/hooks`.
 - Using environment-aware branching for specific Electron IPC calls where necessary.
 
-## 4. Custom Shaders & Visual Fidelity
-Implementing custom BackgroundShaders via native Three.js `ShaderMaterials` mounted via React components. This allowed for premium, high-performance atmospheric aesthetics that standard CSS backgrounds cannot replicate.
-
 ## 5. Complex UI/UX Synchrony
 Ensuring `Zustand` state perfectly matches `framer-motion` layout animations and WebGL material updates simultaneously. This "triple-sync" (State -> UI -> Canvas) is critical for a premium feeling interactive experience.
 

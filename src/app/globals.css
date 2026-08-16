@@ -3,11 +3,64 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --surface: #FDFDFD;
+  --surface-alt: #FAFAFA;
+  --surface-hover: #F5F5F5;
+  --border: #F0F0F0;
+  --border-strong: #E5E5E5;
+  --muted: #9CA3AF;
+  --accent: #171717;
+  --accent-foreground: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --selection-bg: #171717;
+  --selection-fg: #ffffff;
+  --liquid-a: #F3E5F5;
+  --liquid-b: #E3F2FD;
+  --chart-bar: #111111;
+  --chart-axis: #6B7280;
+  --progress-track: #E5E7EB;
+  --progress-fill: #171717;
+}
+
+.dark {
+  --background: #1E1E20;
+  --foreground: #EBEAEC;
+  --surface: #252427;
+  --surface-alt: #2A2A2D;
+  --surface-hover: #323136;
+  --border: #3B3A40;
+  --border-strong: #4F4D55;
+  --muted: #A1A0A5;
+  --accent: #D2BFA1;
+  --accent-foreground: #1E1E20;
+  --card: #252427;
+  --card-foreground: #EBEAEC;
+  --selection-bg: #D2BFA1;
+  --selection-fg: #1E1E20;
+  --liquid-a: #383025;
+  --liquid-b: #252C38;
+  --chart-bar: #D2BFA1;
+  --chart-axis: #A1A0A5;
+  --progress-track: #3B3A40;
+  --progress-fill: #D2BFA1;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-liquid-a: var(--liquid-a);
+  --color-liquid-b: var(--liquid-b);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-serif: var(--font-playfair), ui-serif, Georgia;
 }
@@ -18,10 +71,26 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6, .font-serif {
   font-family: var(--font-serif);
+}
+
+/* Theme-aware range slider */
+input[type="range"] {
+  accent-color: var(--accent);
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--border-strong);
+  border-radius: 9999px;
+}
+
+/* Theme-aware selection */
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
 }
 
 @layer utilities {

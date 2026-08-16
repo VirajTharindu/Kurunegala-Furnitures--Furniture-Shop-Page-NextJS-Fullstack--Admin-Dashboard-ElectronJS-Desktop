@@ -12,6 +12,7 @@ function createWindow() {
             preload: path.join(__dirname, "preload.js"),
             nodeIntegration: false,
             contextIsolation: true,
+            additionalArguments: [`--api-token=${process.env.ELECTRON_API_TOKEN || ''}`]
         },
         frame: false, // Standard premium feel with custom titlebar
         // titleBarStyle: "hiddenInset" removed as it is macOS specific and can cause issues on Windows
@@ -19,7 +20,7 @@ function createWindow() {
 
     const startUrl = isDev
         ? "http://localhost:3000/admin"
-        : `file://${path.join(__dirname, "../out/admin/index.html")}`;
+        : (process.env.APP_URL ? `${process.env.APP_URL}/admin` : "https://your-production-url.com/admin");
 
     win.loadURL(startUrl);
 
