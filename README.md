@@ -12,7 +12,7 @@
 
 # 🧩 Kurunegala Furnitures
 
-> **Immersive 3D Experience for Modern Furniture**
+> **Immersive 3D Experience for Modern Furniture****
 
 Kurunegala Furnitures is a **Fullstack Web Application and Desktop Admin Portal** designed to **revolutionize how customers visualize and purchase luxury furniture**.
 
