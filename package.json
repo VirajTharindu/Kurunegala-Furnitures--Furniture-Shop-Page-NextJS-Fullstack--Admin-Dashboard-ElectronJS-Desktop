@@ -13,7 +13,8 @@
     "test:e2e": "playwright test",
     "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
     "codegen": "graphql-codegen --config codegen.ts",
-    "migrate": "npx tsx --tsconfig tsconfig.json -r tsconfig-paths/register src/scripts/migrate-data.ts"
+    "migrate": "npx tsx --tsconfig tsconfig.json -r tsconfig-paths/register src/scripts/migrate-data.ts",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@apollo/server": "^5.5.0",
