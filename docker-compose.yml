@@ -1,19 +1,70 @@
-version: "3.9"
-
 services:
+  # ── MSSQL Database ──────────────────────────────────────────
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: kurunegala-mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Kurunegala@Str0ng!"   # Must be complex (8+ chars, upper+lower+digit+symbol)
+      MSSQL_PID: "Developer"                     # Free Developer edition
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    healthcheck:
+      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P "Kurunegala@Str0ng!" -Q "SELECT 1" -C -b
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - kurunegala-net
+
+  # ── Redis Cache ─────────────────────────────────────────────
   redis:
     image: redis:7-alpine
     container_name: kurunegala-redis
     restart: unless-stopped
     ports:
-      - "6380:6379"
+      - "6379:6379"
     volumes:
       - redis-data:/data
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 3s
       retries: 5
+    networks:
+      - kurunegala-net
+
+  # ── Next.js App (Frontend + Backend + GraphQL) ──────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kurunegala-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DB_URL: "sqlserver://mssql:1433;database=kurunegala_furnitures;user=SA;password=Kurunegala@Str0ng!;encrypt=true;trustServerCertificate=true"
+      REDIS_URL: "redis://redis:6379"
+      AUTH_SECRET: "${AUTH_SECRET:-super-secret-key-change-in-production}"
+      NEXTAUTH_URL: "http://localhost:3000"
+      NEXT_PUBLIC_APP_URL: "http://localhost:3000"
+      NEXT_PUBLIC_SITE_NAME: "Kurunegala Furnitures"
+    depends_on:
+      mssql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - kurunegala-net
 
 volumes:
+  mssql-data:
   redis-data:
+
+networks:
+  kurunegala-net:
+    driver: bridge
