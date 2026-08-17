@@ -49,6 +49,7 @@ export default function RoomVisualizer() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
         const fetchFlagship = async () => {
             try {

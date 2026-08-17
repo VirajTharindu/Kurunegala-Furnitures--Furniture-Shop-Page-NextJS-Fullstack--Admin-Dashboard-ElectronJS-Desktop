@@ -17,6 +17,7 @@ export default function CustomCursor() {
         const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
         if (isTouchDevice) return;
 
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsVisible(true);
         const moveMouse = (e: MouseEvent) => {
             mouseX.set(e.clientX);
