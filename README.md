@@ -18,7 +18,7 @@ Kurunegala Furnitures is a **Fullstack Web Application and Desktop Admin Portal*
 
 The system focuses on **real-time 3D rendering and high-performance WebGL integrations** and aims to **provide an unparalleled, true-to-life pre-purchase visualization experience for users**.
 
--------
+---------
 
 # ✨ Key Features
 
