@@ -32,6 +32,7 @@ jest.mock("next-themes", () => ({
 
 // framer-motion: strip all Framer-specific props so they don't leak to DOM elements
 jest.mock("framer-motion", () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const React = require("react");
 
     // All props that framer-motion uses but are invalid on real DOM elements
